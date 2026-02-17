@@ -2,13 +2,15 @@ package tn.enicarthage;
 
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
+
 import lombok.Data;
 import lombok.ToString;
 
 @Data
 @ToString
 public class Magasin {
-    
+	private static final Logger LG = Logger.getLogger(Magasin.class);
 	private ArrayList<Produit> produits;
     
     public Magasin() {
@@ -16,7 +18,8 @@ public class Magasin {
     }
     
     public Produit comparerSelonPrix(Produit p1, Produit p2) {
-        if (p1.getPrix() > p2.getPrix()) {
+    	LG.info("Enter comparerSelonPrix");
+        if (p1.getPrix() >= p2.getPrix()) {
             return p1;
         } else {
             return p2;
@@ -24,6 +27,7 @@ public class Magasin {
     }
     
     public void ajouterProduit(Produit p) {
+    	LG.info("Enter Ajouter Produit");
         produits.add(p);
     }
 
@@ -32,6 +36,8 @@ public class Magasin {
     }
     
     public double calculerPrixDeuxProduits(Produit p1, Produit p2) {
-        return p1.getPrix() + p2.getPrix();
+        double test= p1.getPrix() + p2.getPrix();
+    	LG.debug("Prix totoal = "+test);
+    	return test;
     }
 }
